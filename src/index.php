@@ -1,19 +1,8 @@
 <?php
 
-require_once 'post_handler.php';
+require_once 'Router.php';
 
-$posthandler = new PostHandler();
+$router = new Router();
 
-$method = $_SERVER['REQUEST_METHOD'];
-$url = $_SERVER['REQUEST_URI'];
+$router->handle($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
-if ($method == 'POST' && $url == '/add-post') {
-    $posthandler->addPost($_POST['title'], $_POST['content']);
-} elseif ($method == 'GET' && $url == '/list-posts') {
-    $posthandler->postCheck();  // Use $posthandler here
-} else {
-    echo "404 Not Found";
-}
-
-$posthandler->postCheck();
-?>

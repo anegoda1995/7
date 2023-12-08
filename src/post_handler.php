@@ -1,7 +1,8 @@
 <?php
-
+echo 'asd';
+die;
 class PostHandler {
-    private $posts = [];
+    private array $posts = [];
 
     public function addPost($title, $content) {
         $newPost = ['title' => $title, 'content' => $content];
@@ -20,5 +21,3 @@ class PostHandler {
         }
     }
 }
-
-?>
