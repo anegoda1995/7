@@ -4,13 +4,19 @@ class MainGetController
 {
     public function homepage()
     {
+        require_once "models/Post.php";
+        $postModel = new Post();
+
+        $allPosts = $postModel->findAll();
+
         $title = "Welcome to the Homepage!";
         include "views/homepage.php";
     }
 
     public function addPostPage()
     {
-        echo "Add post page";
+        $title = "Add Post";
+        include "views/addPost.php";
     }
 
     public function listPostsPage()
@@ -18,8 +24,14 @@ class MainGetController
         echo "List posts page";
     }
 
-    public function postPage($id)
+    public function postPage()
     {
-        echo "Post page with id $id";
+        require_once "models/Post.php";
+        $postModel = new Post();
+
+        $id = $_GET['id'];
+
+        $post = $postModel->find($id);
+        include "views/postPage.php";
     }
 }

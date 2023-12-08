@@ -70,6 +70,40 @@
             color: #ffffff;
             font-weight: bold;
         }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #50b3a2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #429188;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +114,7 @@
         </div>
         <nav>
             <ul>
-                <li class="current"><a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="add-post">Add Post</a></li>
             </ul>
         </nav>
@@ -88,25 +122,8 @@
 </header>
 
 <div class="container">
-    <h1><?php echo htmlspecialchars($title); ?></h1>
-    <p>Welcome to our website! Enjoy your stay.</p>
-    <br>
-    <br>
-    <h2>Our posts</h2>
-    <?php
-    foreach ($allPosts as $post) {
-        echo "<h2>" . htmlspecialchars($post['title']) . "</h2>";
-        $text = $post['text'];
-        if (mb_strlen($text) > 100) {
-            echo "<p>" . htmlspecialchars(mb_substr($text, 0, 100)) . "...</p>";
-        } else {
-            echo "<p>" . htmlspecialchars($text) . "</p>";
-        }
-
-        echo "<p>Created on " . htmlspecialchars($post['created_at']) . "</p>";
-        echo "<p><a href='post?id=" . htmlspecialchars($post['id']) . "'>Read more</a></p>";
-    }
-    ?>
+    <h1><?php echo $post['title']; ?></h1>
+    <p><?php echo $post['text'] ?></p>
 </div>
 </body>
 </html>

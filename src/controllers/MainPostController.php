@@ -4,7 +4,16 @@ class MainPostController
 {
     public function addPost()
     {
-        echo "Add post";
+//        var_dump($_POST);
+//        die;
+
+        require_once "models/Post.php";
+
+        $postModel = new Post();
+        $lastInsertId = $postModel->create($_POST['title'], $_POST['content']);
+
+        // redirect to new post page
+        header("Location: /post?id=" . $lastInsertId);
     }
 
 //    public function editPost($id)

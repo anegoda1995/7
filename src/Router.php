@@ -18,7 +18,7 @@ class Router {
                 'controller' => 'MainGetController',
                 'action' => 'listPostsPage',
             ],
-            '/post/{id}' => [
+            '/post' => [
                 'controller' => 'MainGetController',
                 'action' => 'postPage',
             ]
@@ -33,6 +33,8 @@ class Router {
 
     public function handle($method, $uri) {
         try {
+            // lcear uri from query params
+            $uri = explode('?', $uri)[0];
             $method = strtoupper($method);
             $route = $this->findRoute($method, $uri);
             $controllerName = $route['controller'];
